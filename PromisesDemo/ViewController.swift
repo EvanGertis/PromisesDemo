@@ -13,13 +13,16 @@ class ViewController: UIViewController {
     // TODO: replace with user UITextFields.
     let username = "davidvtesting@outlook.com"
     let password = "MGUzsu4Y7cgJG"
-
+    
+    // UI variables
+    @IBOutlet weak var _username: UITextField!
+    @IBOutlet weak var _password: UITextField!
+    
+    @IBOutlet weak var LoginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        onSubmit()
-        
-        
+        LoginButton.setTitle("Login", for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,13 +30,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // TODO: replace with button action function
-    func onSubmit() {
-        
-        // TODO: read UITextFields and assign them to local variables.
-        // Code below needs to be replaced with uiTextField.text
-        let tUsername = username
-        let tPassword = password
+    // After the user enters the proper login and password an access token is assigned
+    // to their user preferences.
+    @IBAction func LoginButton(_ sender: Any) {
+
+        // Read UItext fields and set them to local variables.
+        let tUsername = _username.text
+        let tPassword = _password.text
         
         let loginHelper = TestClass()
         
@@ -45,10 +48,16 @@ class ViewController: UIViewController {
             return
         }
         
-        let authToken = loginHelper.getAuthenticationToken(tUsername, tPassword)
-        print(authToken)
+        loginHelper.doLogin(tUsername!, tPassword!)
+        
+        if(UserDefaults.standard.string(forKey: "accessToken") != ""){
+            print("second screen accessToken: \(UserDefaults.standard.string(forKey: "accessToken"))")
+            print("we can proceed")
+        }
     }
+    
 
+    
 
 }
 

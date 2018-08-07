@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO: to be removed after.
-public class TestClass {
+public class LoginAssistant {
     
     // Use the username and password to retreive the authentication token for the user.
     func doLogin(_ username:String, _ password:String){
@@ -60,7 +60,7 @@ public class TestClass {
                 let preferences = UserDefaults.standard
                 if(preferences.string(forKey: "accessToken") == nil){
                     preferences.set(session_data, forKey: "accessToken")
-                    print("first screen accessToken \(UserDefaults.standard.string(forKey: "accessToken"))")
+                    print("first screen accessToken \(String(describing: UserDefaults.standard.string(forKey: "accessToken")))")
                 }
             }
             

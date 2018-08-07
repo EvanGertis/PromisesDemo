@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // TODO: replace with user UITextFields.
-    let username = "davidvtesting@outlook.com"
-    let password = "MGUzsu4Y7cgJG"
+    // Test case.
+    // username = "davidvtesting@outlook.com"
+    // password = "MGUzsu4Y7cgJG"
     
     // UI variables
     @IBOutlet weak var _username: UITextField!
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set the text on the login.
         LoginButton.setTitle("Login", for: UIControlState.normal)
     }
 
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
         let tUsername = _username.text
         let tPassword = _password.text
         
-        let loginHelper = TestClass()
+        let loginAssistant = LoginAssistant()
         
         // Guard against blank submission
         if(tUsername == "" || tPassword == ""){
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
             return
         }
         
-        loginHelper.doLogin(tUsername!, tPassword!)
+        loginAssistant.doLogin(tUsername!, tPassword!)
         
         if(UserDefaults.standard.string(forKey: "accessToken") != ""){
             print("second screen accessToken: \(UserDefaults.standard.string(forKey: "accessToken"))")
